@@ -1,38 +1,95 @@
-# Agent Memory MCP Skill
+# claude-agent-memory-mcp-skill
 
-A Claude skill for working with persistent agent memory through a Model Context Protocol (MCP) server. The skill describes a memory-bank workflow that allows an agent to search existing knowledge, save new information, retrieve specific records, and inspect memory usage.
+A Claude Code skill for integrating persistent, searchable project memory into AI agents through a Model Context Protocol (MCP) server.
 
-## What This Skill Covers
+## Overview
 
-- Setting up the agent memory project and its Node.js dependencies.
-- Starting the MCP server for a target workspace.
-- Searching memories by query, type, and tags.
-- Writing durable decisions, patterns, and project knowledge.
-- Reading a saved memory by its key.
-- Viewing memory statistics and using the included dashboard.
+This skill describes a memory-bank workflow for storing durable project knowledge and retrieving it across tasks. It focuses on architecture decisions, implementation patterns, project conventions, and other information that remains useful beyond a single conversation.
 
-## Repository Structure
+Memory should be selective. Store information that will improve future work, not every transient detail.
 
-- `SKILL.md`: Original skill instructions, setup steps, MCP tool descriptions, and dashboard usage.
-- `LICENSE`: MIT License for this repository.
+## Main Capabilities
+
+- Set up a persistent memory service.
+- Start an MCP server for a workspace.
+- Search memories using queries, types, and tags.
+- Write durable knowledge with stable keys.
+- Retrieve specific memory records.
+- Inspect memory usage and statistics.
+- Use the included dashboard where configured.
+- Organize project knowledge for reuse across agent sessions.
 
 ## Prerequisites
 
-The documented setup requires Node.js 18 or newer and npm. Review the setup commands in `SKILL.md` and confirm the memory project is installed in the intended workspace before starting the server.
+The documented setup expects:
 
-## Typical Workflow
+- Node.js 18 or newer.
+- npm.
+- The memory project installed in the intended workspace.
+- A Claude-compatible MCP environment.
 
-1. Install dependencies and compile the memory project.
-2. Start the MCP server with a project identifier and absolute workspace path.
-3. Search existing memories before making decisions that may already be documented.
-4. Write useful, durable information with meaningful keys, types, and tags.
-5. Retrieve stored entries when a task needs prior decisions or project context.
-6. Use the dashboard when a visual overview of memory usage is helpful.
+Review the setup steps in `SKILL.md` before compiling or starting the server.
+
+## Installation
+
+Clone the skill:
+
+```bash
+git clone https://github.com/Brajesh31/claude-agent-memory-mcp-skill.git ~/.claude/skills/agent-memory-mcp
+```
+
+The MCP memory server is a separate project and must be installed and configured independently.
 
 ## Usage
 
-Add the skill to a Claude-compatible environment that supports MCP integrations. Use it when implementing or operating persistent memory for an AI agent. The repository contains the skill instructions, not a bundled copy of the external memory server.
+Invoke the skill when implementing or operating persistent agent memory:
 
-## License
+```text
+/agent-memory-mcp
+```
 
-Released under the MIT License. See [LICENSE](LICENSE) for details.
+Provide the workspace, memory categories, retrieval needs, and retention expectations.
+
+## Typical Workflow
+
+1. Install the memory service and dependencies.
+2. Build or compile the service as required.
+3. Configure the MCP server for the target workspace.
+4. Search existing memory before making decisions.
+5. Save only durable and useful information.
+6. Use consistent keys, types, and tags.
+7. Retrieve relevant records during future tasks.
+8. Review memory quality and remove stale information through the supported workflow.
+
+## Memory Design Guidelines
+
+- Prefer concise, factual records.
+- Separate decisions from temporary task notes.
+- Include enough context to understand why a decision was made.
+- Use stable keys and consistent categories.
+- Avoid storing secrets or unnecessary personal information.
+- Update outdated records rather than accumulating contradictory entries.
+- Keep project-specific memories scoped to the correct workspace.
+
+## Repository Contents
+
+- `SKILL.md`: Main memory setup and MCP workflow instructions.
+- `README.md`: Capabilities, prerequisites, and memory design guidance.
+
+## Security Considerations
+
+Memory can persist sensitive information beyond the current task. Define access boundaries, filesystem permissions, backup behavior, and retention rules. Do not store API keys, passwords, private keys, or confidential data unless the system has an explicitly approved secure handling design.
+
+## Validation Checklist
+
+- MCP server starts successfully.
+- The intended workspace is configured.
+- Search returns relevant records.
+- Writes persist across sessions.
+- Memory keys and tags are consistent.
+- Sensitive data is excluded.
+- Stale information can be identified and updated.
+
+## Practical Principle
+
+Persistent memory should reduce repeated explanation and preserve useful decisions. If a record is unlikely to change future work, it probably does not need to be stored.
